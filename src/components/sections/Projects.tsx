@@ -1,41 +1,46 @@
-import Container from "../ui/Container";
-import ProjectCard from "../ui/ProjectCard";
+"use client";
 
+import { motion, type Variants } from "framer-motion";
+import Container from "../ui/Container";
+import SectionTitle from "../ui/SectionTitle";
+import ProjectCard from "../ui/ProjectCard";
 import { projects } from "@/data/projects";
+
+const grid: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const card: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="py-24 bg-background"
-    >
+    <section id="projects" className="py-24 bg-background">
       <Container>
+        <SectionTitle title="Projects" subtitle="Some projects I've worked on." />
 
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold">
-            Projects
-          </h2>
-
-          <p className="mt-3 text-muted-foreground">
-            Some projects I've worked on.
-          </p>
-        </div>
-
-        <div
-          className="
-            grid
-            gap-8
-            md:grid-cols-2
-          "
+        <motion.div
+          className="grid gap-8 md:grid-cols-2"
+          variants={grid}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
         >
           {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-            />
+            <motion.div key={project.id} variants={card}>
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
-        </div>
-
+        </motion.div>
       </Container>
     </section>
   );

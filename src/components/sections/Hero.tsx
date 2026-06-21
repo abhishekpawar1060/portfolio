@@ -1,3 +1,9 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import { motion, type Variants } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Container from "../ui/Container";
 import { Mail } from "lucide-react";
 
@@ -21,105 +27,198 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Parent: staggers each child's entrance
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+// Default child motion: fade + rise
+const item: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const blobOneRef = useRef<HTMLDivElement>(null);
+  const blobTwoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Two blobs move at different speeds/directions relative to
+      // scroll, which is what actually produces a parallax read
+      // (depth = relative motion, not motion alone).
+      gsap.to(blobOneRef.current, {
+        y: 120,
+        x: -40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      gsap.to(blobTwoRef.current, {
+        y: -80,
+        x: 60,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center py-24 bg-background">
-      <Container>
-        <div className="max-w-4xl space-y-6">
-          <p className="text-lg text-muted-foreground">
-            Hello, I'm
-          </p>
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center overflow-hidden py-24 bg-background"
+    >
+      <div
+        ref={blobOneRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-primary/20 blur-[120px]"
+      />
+      <div
+        ref={blobTwoRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 -right-24 h-[24rem] w-[24rem] rounded-full bg-primary/10 blur-[120px]"
+      />
 
-          <h1 className="text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
+      <Container className="relative z-10">
+        <motion.div
+          className="max-w-4xl space-y-6"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p variants={item} className="text-lg text-muted-foreground">
+            Hello, I&apos;m
+          </motion.p>
+
+          <motion.h1
+            variants={item}
+            className="text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl"
+          >
             Abhishek Pawar
-          </h1>
+          </motion.h1>
 
-          <h2 className="text-2xl font-medium text-muted-foreground md:text-4xl">
+          <motion.h2
+            variants={item}
+            className="text-2xl font-medium text-muted-foreground md:text-4xl"
+          >
             AI/ML Engineer & Full Stack Developer
-          </h2>
+          </motion.h2>
 
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+          <motion.p
+            variants={item}
+            className="max-w-2xl text-lg leading-8 text-muted-foreground"
+          >
             Building AI-powered applications, RAG systems,
             Agentic workflows, and scalable web platforms
             using Next.js, FastAPI, PostgreSQL, Azure,
             and Large Language Models.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            <a
+          <motion.div variants={item} className="flex flex-wrap gap-4 pt-4">
+            <motion.a
               href="#projects"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="
                 rounded-lg
                 bg-primary
                 px-6
                 py-3
                 text-primary-foreground
-                transition-all
+                transition-colors
                 hover:opacity-90
               "
             >
               View Projects
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="
                 rounded-lg
                 border
                 px-6
                 py-3
-                transition-all
+                transition-colors
                 hover:bg-muted
               "
             >
               Download Resume
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
-          <div className="flex gap-6 pt-4">
-            <a
+          <motion.div variants={item} className="flex gap-6 pt-4">
+            <motion.a
               href="https://github.com/your-github"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="
-                text-muted-foreground
-                transition-colors
-                hover:text-foreground
-              "
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
               <GitHubIcon className="h-6 w-6" />
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="https://linkedin.com/in/your-linkedin"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="
-                text-muted-foreground
-                transition-colors
-                hover:text-foreground
-              "
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
               <LinkedInIcon className="h-6 w-6" />
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="mailto:your-email@gmail.com"
               aria-label="Email"
-              className="
-                text-muted-foreground
-                transition-colors
-                hover:text-foreground
-              "
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
               <Mail className="h-6 w-6" />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );
