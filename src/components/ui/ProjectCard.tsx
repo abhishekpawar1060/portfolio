@@ -1,38 +1,58 @@
 import Link from "next/link";
 import { Project } from "@/types/project";
 
-interface Props {
+interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({
   project,
-}: Props) {
+}: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="block"
+      className="block h-full"
     >
-      <div className="rounded-xl border-border p-6 transition hover:shadow-lg hover:-translate-y-1">
-        <h3 className="text-2xl font-bold">
-          {project.title}
-        </h3>
+      <article
+        className="
+          h-full
+          rounded-2xl
+          border
+          bg-card
+          p-6
+          transition-all
+          hover:-translate-y-1
+          hover:shadow-lg
+        "
+      >
+        <div className="space-y-4">
+          <h3 className="text-2xl font-semibold">
+            {project.title}
+          </h3>
 
-        <p className="mt-4 text-muted-foreground">
-          {project.description}
-        </p>
+          <p className="text-muted-foreground">
+            {project.description}
+          </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground"
-            >
-              {tech}
-            </span>
-          ))}
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="
+                  rounded-full
+                  bg-muted
+                  px-3
+                  py-1
+                  text-xs
+                  font-medium
+                "
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 }
