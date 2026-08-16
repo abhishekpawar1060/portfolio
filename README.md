@@ -79,6 +79,35 @@ data renders as a styled flow diagram. To use a real diagram, drop the file in
 
 Drop your PDF at `public/resume.pdf` (path configurable via `site.resume`).
 
+## Conventions
+
+Four rules keep this from drifting back into ad-hoc styling. Each replaced a
+concrete duplication that had already crept in.
+
+**Accents come from `src/lib/accents.ts`.** Never write
+`accent === "jade" ? … : …` in a component — four files each had their own
+version. Import `ACCENTS` and read `.text` / `.fill` / `.chip` / `.cssVar`.
+
+**Alpha values follow a fixed scale.** Anything outside it is a bug:
+
+| Step | Use |
+| --- | --- |
+| `/10` | accent tint (filled chip, wash behind an icon) |
+| `/20` | that fill on hover |
+| `/30` | resting border on an accented element |
+| `/40` | that border on hover |
+| `/60` | small solid-ish marks; also the standard divider/`bg-card` weight |
+| `/70` | container borders |
+
+**Hairline grids use `panel-grid` + `panel-cell`.** The `gap:1px`-over-a-tinted-
+background trick was copy-pasted in seven places. It's one utility now; set
+columns and radius at the call site.
+
+**`label` sets no colour.** Tailwind can't guarantee source order between a
+colour baked into a custom utility and a `text-*` class on the same element,
+which is why call sites used to need `!text-…`. Always write
+`class="label text-muted-foreground"`.
+
 ## Design system
 
 Everything is driven by tokens at the top of `src/app/globals.css`:

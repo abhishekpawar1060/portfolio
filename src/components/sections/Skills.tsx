@@ -6,20 +6,15 @@ import Container from "@/components/ui/Container";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SpotlightCard from "@/components/ui/SpotlightCard";
+import { ACCENTS, type Accent } from "@/lib/accents";
 import { skillCategories, currentlyLearning } from "@/data/skills";
 import { cn } from "@/lib/utils";
 
 const SEGMENTS = 5;
 
-const accentClasses = {
-  ember: { text: "text-ember", fill: "bg-ember", ring: "border-ember/30 bg-ember/10" },
-  jade: { text: "text-jade", fill: "bg-jade", ring: "border-jade/30 bg-jade/10" },
-  iris: { text: "text-iris", fill: "bg-iris", ring: "border-iris/30 bg-iris/10" },
-} as const;
-
 /** Five-segment level meter. Reads faster than a percentage bar and doesn't
  *  pretend to a precision that "how good are you at Kubernetes" doesn't have. */
-function LevelMeter({ level, accent }: { level: number; accent: keyof typeof accentClasses }) {
+function LevelMeter({ level, accent }: { level: number; accent: Accent }) {
 
 
   return (
@@ -29,7 +24,7 @@ function LevelMeter({ level, accent }: { level: number; accent: keyof typeof acc
           key={i}
           className={cn(
             "h-3 w-[3px] rounded-full origin-bottom",
-            i < level ? accentClasses[accent].fill : "bg-border",
+            i < level ? ACCENTS[accent].fill : "bg-border",
           )}
           initial={{ scaleY: 0.2, opacity: 0.4 }}
           whileInView={{ scaleY: 1, opacity: 1 }}
@@ -60,7 +55,7 @@ export default function Skills() {
 
         <Reveal stagger={0.1} className="mt-14 grid gap-5 md:grid-cols-2" amount={0.05}>
           {skillCategories.map((category) => {
-            const accent = accentClasses[category.accent];
+            const accent = ACCENTS[category.accent];
 
             return (
               <RevealItem key={category.name} className="h-full">
@@ -70,8 +65,7 @@ export default function Skills() {
                       <span
                         className={cn(
                           "grid size-6 place-items-center rounded-md border font-mono text-[0.65rem] font-semibold",
-                          accent.ring,
-                          accent.text,
+                          accent.chip,
                         )}
                       >
                         {category.skills.length}
@@ -87,7 +81,7 @@ export default function Skills() {
                     {category.skills.map((skill) => (
                       <li
                         key={skill.name}
-                        className="group/skill flex items-center justify-between gap-4 border-b border-border/30 py-2.5 last:border-0"
+                        className="group/skill flex items-center justify-between gap-4 border-b border-border/60 py-2.5 last:border-0"
                       >
                         <span className="flex min-w-0 items-baseline gap-2">
                           <span className="truncate text-sm transition-colors duration-300 group-hover/skill:text-foreground">
@@ -110,8 +104,8 @@ export default function Skills() {
         </Reveal>
 
         {/* Currently learning — TODO: update in data/skills.ts */}
-        <Reveal className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border/60 bg-card/40 px-5 py-4">
-          <span className="label">Currently learning</span>
+        <Reveal className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border/60 bg-card/50 px-5 py-4">
+          <span className="label text-muted-foreground">Currently learning</span>
           <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {currentlyLearning.map((item) => (
               <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">

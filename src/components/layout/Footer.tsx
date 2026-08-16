@@ -16,7 +16,7 @@ export default function Footer() {
             <p className="font-display text-sm font-semibold tracking-tight">{site.name}</p>
             <p className="mt-1 max-w-xs text-sm text-muted-foreground">{site.tagline}</p>
             <p className="mt-4 font-mono text-[0.7rem] text-muted-foreground">
-              © {year} · Built with Next.js and too many revisions
+              © {year} {site.name}
             </p>
           </div>
 
@@ -38,7 +38,7 @@ export default function Footer() {
 
           <a
             href="#top"
-            className="group inline-flex h-fit items-center gap-2 rounded-lg border border-border/70 bg-card/40 px-4 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:border-ember/40 hover:text-ember"
+            className="group inline-flex h-fit items-center gap-2 rounded-lg border border-border/70 bg-card/50 px-4 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:border-ember/40 hover:text-ember"
           >
             Back to top
             <ArrowUp className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />

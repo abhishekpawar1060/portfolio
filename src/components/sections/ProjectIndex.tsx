@@ -7,6 +7,7 @@ import { ArrowUpRight, Minus, Plus } from "lucide-react";
 
 import MetricStat from "@/components/ui/MetricStat";
 import Tag from "@/components/ui/Tag";
+import { ACCENTS } from "@/lib/accents";
 import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -24,12 +25,7 @@ export default function ProjectIndex() {
     <ul className="border-t border-border/60">
       {projects.map((project, i) => {
         const isOpen = openSlug === project.slug;
-        const accentText =
-          project.accent === "jade"
-            ? "text-jade"
-            : project.accent === "iris"
-              ? "text-iris"
-              : "text-ember";
+        const accentText = ACCENTS[project.accent].text;
 
         return (
           <li key={project.slug} className="border-b border-border/60">

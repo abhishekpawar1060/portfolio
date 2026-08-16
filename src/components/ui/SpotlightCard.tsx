@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
+import { ACCENTS, type Accent } from "@/lib/accents";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,7 +20,7 @@ export default function SpotlightCard({
 }: {
   children: React.ReactNode;
   className?: string;
-  accent?: "ember" | "jade" | "iris";
+  accent?: Accent;
   as?: "div" | "article" | "li";
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,9 +41,6 @@ export default function SpotlightCard({
     ref.current?.style.setProperty("--spot-opacity", "1");
   }, []);
 
-  const accentVar =
-    accent === "jade" ? "var(--jade)" : accent === "iris" ? "var(--iris)" : "var(--ember)";
-
   const Component = Tag as React.ElementType;
 
   return (
@@ -53,7 +51,7 @@ export default function SpotlightCard({
       onPointerLeave={handleLeave}
       style={
         {
-          "--accent": accentVar,
+          "--accent": ACCENTS[accent].cssVar,
           "--spot-opacity": "0",
         } as React.CSSProperties
       }

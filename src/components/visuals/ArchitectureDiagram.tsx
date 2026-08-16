@@ -22,8 +22,12 @@ export default function ArchitectureDiagram({
 }) {
   return (
     <figure className="not-prose">
-      <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/40">
-        <div aria-hidden className="grid-field absolute inset-0 !opacity-[0.07]" />
+      <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/50">
+        <div
+          aria-hidden
+          className="grid-field absolute inset-0"
+          style={{ "--grid-field-opacity": 0.07 } as React.CSSProperties}
+        />
 
         {image ? (
           /* TODO: real diagram path comes from data/projects.ts →
@@ -47,7 +51,7 @@ export default function ArchitectureDiagram({
                       <span className="font-mono text-[0.65rem] tabular-nums text-ember">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="label !text-foreground/70">{stage.name}</span>
+                      <span className="label text-foreground/70">{stage.name}</span>
                     </div>
 
                     {/* Nodes */}

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import type { Project } from "@/types";
+import { ACCENTS } from "@/lib/accents";
 import MetricStat from "@/components/ui/MetricStat";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import Tag from "@/components/ui/Tag";
@@ -30,12 +31,7 @@ export default function ProjectCard({
 }) {
   const isFeature = variant === "feature";
 
-  const accentText =
-    project.accent === "jade"
-      ? "text-jade"
-      : project.accent === "iris"
-        ? "text-iris"
-        : "text-ember";
+  const accentText = ACCENTS[project.accent].text;
 
   return (
     <SpotlightCard
@@ -61,7 +57,7 @@ export default function ProjectCard({
         {/* ------------------------------------------------------- Content */}
         <div className={cn("flex flex-1 flex-col", isFeature && "lg:col-span-7")}>
           <div className="flex items-center gap-3">
-            <span className={cn("font-mono text-[0.7rem] uppercase tracking-[0.16em]", accentText)}>
+            <span className={cn("label", accentText)}>
               {project.category}
             </span>
             <span className="h-px w-6 bg-border" />
@@ -120,13 +116,13 @@ export default function ProjectCard({
         <div
           className={cn(
             isFeature
-              ? "grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border/50 bg-border/50 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1"
+              ? "panel-grid grid-cols-1 rounded-xl sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1"
               : "border-t border-border/60 pt-5",
           )}
         >
           {isFeature ? (
             project.highlights.map((metric) => (
-              <div key={metric.label} className="bg-card/60 p-5">
+              <div key={metric.label} className="panel-cell p-5">
                 <MetricStat metric={metric} size="default" />
               </div>
             ))

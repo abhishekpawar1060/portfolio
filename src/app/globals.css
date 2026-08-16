@@ -19,7 +19,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
-  --color-elevated: var(--elevated);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -58,15 +57,11 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.5);
   --radius-2xl: calc(var(--radius) * 2);
-  --radius-3xl: calc(var(--radius) * 3);
 
   /* --- Motion ------------------------------------------------------------- */
   --animate-aurora: aurora 24s ease-in-out infinite;
   --animate-drift: drift 30s ease-in-out infinite alternate;
-  --animate-marquee: marquee 40s linear infinite;
-  --animate-caret: caret 1.1s steps(2, start) infinite;
   --animate-pulse-ring: pulse-ring 3s ease-out infinite;
-  --animate-shimmer: shimmer 2.5s linear infinite;
 }
 
 /* ---------------------------------------------------------------------------
@@ -82,7 +77,6 @@
   --background: oklch(0.952 0.008 84);
   --foreground: oklch(0.205 0.012 62);
   --surface: oklch(0.932 0.010 82);
-  --elevated: oklch(0.998 0.003 85);
 
   --card: oklch(0.993 0.004 85);
   --card-foreground: oklch(0.205 0.012 62);
@@ -134,7 +128,6 @@
   --background: oklch(0.155 0.009 66);
   --foreground: oklch(0.945 0.008 86);
   --surface: oklch(0.185 0.010 66);
-  --elevated: oklch(0.212 0.012 66);
 
   --card: oklch(0.194 0.011 66);
   --card-foreground: oklch(0.945 0.008 86);
@@ -323,7 +316,9 @@
     linear-gradient(to right, color-mix(in oklch, var(--foreground) 100%, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 100%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
-  opacity: var(--grid-opacity);
+  /* Per-instance override without !important: set --grid-field-opacity in a
+     style prop where a section needs a different weight. */
+  opacity: var(--grid-field-opacity, var(--grid-opacity));
   mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 30%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, #000 30%, transparent 78%);
 }
@@ -333,6 +328,24 @@
 @utility grain {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   opacity: var(--grain-opacity);
+}
+
+/* Grid whose cells are separated by hairlines instead of gaps.
+   `gap: 1px` over a border-coloured background lets the container show through,
+   giving crisp 1px rules with no doubled edges and no last-child exceptions.
+   Pair with `panel-cell` on the children; set columns and radius at the call
+   site. A CSS utility rather than a component because the call sites need it
+   on <dl>, <ul> and on motion elements alike. */
+@utility panel-grid {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  background-color: color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+@utility panel-cell {
+  background-color: color-mix(in oklch, var(--card) 50%, transparent);
 }
 
 /* Hairline top border that fades at both ends — used as a section divider. */
@@ -346,9 +359,13 @@
   );
 }
 
-/* Small uppercase mono label. Used everywhere for section kickers and metadata. */
+/* Small uppercase mono label — the site's kicker/metadata treatment.
+   Deliberately sets no colour: Tailwind can't guarantee source order between
+   a colour baked in here and a `text-*` utility on the same element, which is
+   why call sites previously needed `!text-…` to win. Always pair it with an
+   explicit colour, e.g. `class="label text-muted-foreground"`. */
 @utility label {
-  @apply font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-muted-foreground;
+  @apply font-mono text-[0.6875rem] uppercase tracking-[0.18em];
 }
 
 /* Ember gradient text for the one or two phrases that carry the most weight. */

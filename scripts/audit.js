@@ -16,6 +16,10 @@
  * typecheck and lint all passed. Keep this in CI.
  *
  * Requires the site to be running. Exits non-zero on failure.
+ *
+ * Don't run this while `next build` is running against the same directory —
+ * the dev server recompiles mid-sweep and reveals report as unsettled, which
+ * looks like a failure but isn't.
  */
 
 const { chromium } = require("playwright-core");
@@ -58,10 +62,13 @@ const IGNORE = [/Reduced Motion enabled on your device/i];
 
         await page.goto(BASE + route, { waitUntil: "networkidle" });
         // Scroll the full page so every whileInView reveal is triggered.
+        // Dwell at each step: some headings only animate once 60% of the
+        // element is in view, and a faster sweep can skip past that threshold
+        // without IntersectionObserver ever firing.
         await page.evaluate(async () => {
-          for (let y = 0; y < document.body.scrollHeight; y += 700) {
+          for (let y = 0; y < document.body.scrollHeight; y += 600) {
             window.scrollTo({ top: y, behavior: "instant" });
-            await new Promise((r) => setTimeout(r, 60));
+            await new Promise((r) => setTimeout(r, 120));
           }
           window.scrollTo({ top: 0, behavior: "instant" });
         });

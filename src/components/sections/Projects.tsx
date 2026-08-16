@@ -53,7 +53,7 @@ export default function Projects() {
           <Reveal className="mt-10 flex justify-center" delay={0.1}>
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-2 rounded-xl border border-border/70 bg-card/40 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
+              className="group inline-flex items-center gap-2 rounded-xl border border-border/70 bg-card/50 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
             >
               All projects ({projects.length})
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />

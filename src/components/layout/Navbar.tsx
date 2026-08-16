@@ -96,7 +96,7 @@ export default function Navbar() {
         >
           {/* --- Mark ---------------------------------------------------- */}
           <Link href="/" className="group flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-            <span className="relative grid size-8 shrink-0 place-items-center rounded-md border border-ember/35 bg-ember/10 font-mono text-[0.7rem] font-semibold text-ember">
+            <span className="relative grid size-8 shrink-0 place-items-center rounded-md border border-ember/30 bg-ember/10 font-mono text-[0.7rem] font-semibold text-ember">
               {/* TODO: replace with your initials (or swap for a logo/SVG) */}
               {site.shortName}
               <span className="absolute inset-0 rounded-md border border-ember/40 opacity-0 animate-pulse-ring group-hover:opacity-100" />
@@ -123,7 +123,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute inset-0 -z-10 rounded-md border border-ember/25 bg-ember/10"
+                        className="absolute inset-0 -z-10 rounded-md border border-ember/30 bg-ember/10"
                         transition={{ type: "spring", stiffness: 380, damping: 32 }}
                       />
                     )}
@@ -140,7 +140,7 @@ export default function Navbar() {
 
             <Link
               href="/#contact"
-              className="hidden rounded-lg border border-ember/40 bg-ember/10 px-4 py-2 text-sm font-medium text-ember transition-colors duration-300 hover:bg-ember/20 sm:block"
+              className="hidden rounded-lg border border-ember/30 bg-ember/10 px-4 py-2 text-sm font-medium text-ember transition-colors duration-300 hover:border-ember/40 hover:bg-ember/20 sm:block"
             >
               Get in touch
             </Link>
@@ -150,7 +150,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
-              className="grid size-9 place-items-center rounded-lg border border-border/70 bg-card/60 text-muted-foreground backdrop-blur transition-colors hover:text-foreground md:hidden"
+              className="grid size-9 place-items-center rounded-lg border border-border/70 bg-card/50 text-muted-foreground backdrop-blur transition-colors hover:text-foreground md:hidden"
             >
               {menuOpen ? <X className="size-[17px]" /> : <Menu className="size-[17px]" />}
             </button>
@@ -187,7 +187,7 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-baseline gap-4 border-b border-border/40 py-4 transition-colors hover:text-ember"
+                      className="flex items-baseline gap-4 border-b border-border/60 py-4 transition-colors hover:text-ember"
                     >
                       <span className="font-mono text-xs text-ember">{link.index}</span>
                       <span className="font-display text-3xl font-medium tracking-tight">

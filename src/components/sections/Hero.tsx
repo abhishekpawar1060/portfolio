@@ -53,7 +53,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2.5 rounded-full border border-border/70 bg-card/50 py-1.5 pl-2 pr-4 backdrop-blur"
             >
               <span className="relative grid size-4 place-items-center">
-                <span className="absolute size-2 rounded-full bg-jade/50 animate-pulse-ring" />
+                <span className="absolute size-2 rounded-full bg-jade/60 animate-pulse-ring" />
                 <span className="size-1.5 rounded-full bg-jade" />
               </span>
               <span className="font-mono text-[0.7rem] tracking-tight text-muted-foreground">
@@ -137,7 +137,7 @@ export default function Hero() {
                   href={site.resume}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card/40 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
+                  className="group inline-flex items-center gap-2 rounded-xl border border-border/70 bg-card/50 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
                 >
                   Résumé
                   <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -161,11 +161,11 @@ export default function Hero() {
             </div>
 
             {/* Stat strip — TODO: real numbers in data/site.ts */}
-            <dl className="grid w-full grid-cols-3 gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 lg:max-w-xs lg:grid-cols-1">
+            <dl className="panel-grid w-full grid-cols-3 rounded-xl lg:max-w-xs lg:grid-cols-1">
               {heroStats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="flex flex-col gap-1 bg-card/60 p-4 backdrop-blur transition-colors duration-300 hover:bg-card lg:flex-row lg:items-baseline lg:justify-between lg:gap-3"
+                  className="panel-cell flex flex-col gap-1 p-4 backdrop-blur transition-colors duration-300 hover:bg-card lg:flex-row lg:items-baseline lg:justify-between lg:gap-3"
                 >
                   <dt className="order-2 text-[0.7rem] leading-tight text-muted-foreground lg:order-1 lg:text-xs">
                     {stat.label}
@@ -189,7 +189,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center sm:flex"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="label">Scroll</span>
+          <span className="label text-muted-foreground">Scroll</span>
           <span className="relative h-10 w-px overflow-hidden bg-border">
             <motion.span
               className="absolute inset-x-0 top-0 h-4 bg-ember"

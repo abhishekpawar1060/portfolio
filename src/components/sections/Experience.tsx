@@ -105,7 +105,7 @@ export default function Experience() {
                     <ul className="mt-4 flex flex-col gap-2.5">
                       {item.points.map((point) => (
                         <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
-                          <span aria-hidden className="mt-[0.6em] size-1 shrink-0 rounded-full bg-ember/50" />
+                          <span aria-hidden className="mt-[0.6em] size-1 shrink-0 rounded-full bg-ember/60" />
                           <span className="text-pretty">{point}</span>
                         </li>
                       ))}
@@ -127,9 +127,9 @@ export default function Experience() {
 
         {/* --- Education ------------------------------------------------- */}
         {education.length > 0 && (
-          <Reveal stagger={0.1} className="mt-16 grid gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 sm:grid-cols-2">
+          <Reveal stagger={0.1} className="panel-grid mt-16 rounded-xl sm:grid-cols-2">
             {education.map((item) => (
-              <RevealItem key={item.degree} className="bg-card/50 p-5">
+              <RevealItem key={item.degree} className="panel-cell p-5">
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border border-iris/30 bg-iris/10 text-iris">
                     <GraduationCap className="size-3.5" />

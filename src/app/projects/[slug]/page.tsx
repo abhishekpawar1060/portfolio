@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Quote } from "lucide-react";
 import Container from "@/components/ui/Container";
 import MetricStat from "@/components/ui/MetricStat";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
+import SectionMark from "@/components/ui/SectionMark";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import Tag from "@/components/ui/Tag";
 import ArchitectureDiagram from "@/components/visuals/ArchitectureDiagram";
@@ -35,17 +36,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "article",
     },
   };
-}
-
-/* Shared heading for the case study body sections. */
-function SectionMark({ index, label }: { index: string; label: string }) {
-  return (
-    <div className="mb-6 flex items-center gap-4">
-      <span className="font-mono text-xs tabular-nums text-ember">{index}</span>
-      <span className="label !text-foreground/70">{label}</span>
-      <span aria-hidden className="hairline h-px flex-1" />
-    </div>
-  );
 }
 
 export default async function CaseStudyPage({ params }: Params) {
@@ -106,7 +96,7 @@ export default async function CaseStudyPage({ params }: Params) {
                   href={link.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card/40 px-4 py-2 text-sm backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-border/70 bg-card/50 px-4 py-2 text-sm backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
                 >
                   {link.label}
                   <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -116,9 +106,9 @@ export default async function CaseStudyPage({ params }: Params) {
           )}
 
           {/* Headline metrics */}
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-3">
+          <div className="panel-grid mt-12 rounded-2xl sm:grid-cols-3">
             {project.highlights.map((metric) => (
-              <div key={metric.label} className="bg-card/60 p-6 backdrop-blur">
+              <div key={metric.label} className="panel-cell p-6 backdrop-blur">
                 <MetricStat metric={metric} size="lg" />
               </div>
             ))}
@@ -134,7 +124,7 @@ export default async function CaseStudyPage({ params }: Params) {
             <div className="flex flex-col gap-4 lg:sticky lg:top-28">
               {/* Role card */}
               <SpotlightCard accent={project.accent} className="p-6">
-                <p className="label">My role</p>
+                <p className="label text-muted-foreground">My role</p>
                 <p className="mt-2 font-display text-lg font-semibold tracking-tight">
                   {project.role.title}
                 </p>
@@ -153,8 +143,8 @@ export default async function CaseStudyPage({ params }: Params) {
               </SpotlightCard>
 
               {/* Stack card */}
-              <div className="rounded-2xl border border-border/70 bg-card/40 p-6">
-                <p className="label">Stack</p>
+              <div className="rounded-2xl border border-border/70 bg-card/50 p-6">
+                <p className="label text-muted-foreground">Stack</p>
                 <div className="mt-4 flex flex-col gap-4">
                   {project.stack.map((group) => (
                     <div key={group.group}>
@@ -185,11 +175,11 @@ export default async function CaseStudyPage({ params }: Params) {
               </p>
 
               <div className="mt-8">
-                <p className="label mb-4">Constraints</p>
-                <ul className="grid gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 sm:grid-cols-2">
+                <p className="label mb-4 text-muted-foreground">Constraints</p>
+                <ul className="panel-grid rounded-xl sm:grid-cols-2">
                   {project.problem.constraints.map((constraint, i) => (
-                    <li key={constraint} className="flex gap-3 bg-card/50 p-4">
-                      <span className="font-mono text-[0.7rem] tabular-nums text-ember/70">
+                    <li key={constraint} className="panel-cell flex gap-3 p-4">
+                      <span className="font-mono text-[0.7rem] tabular-nums text-ember/60">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="text-pretty text-sm leading-relaxed text-muted-foreground">
@@ -217,12 +207,12 @@ export default async function CaseStudyPage({ params }: Params) {
               </div>
 
               <div className="mt-10">
-                <p className="label mb-4">Decisions worth defending</p>
+                <p className="label mb-4 text-muted-foreground">Decisions worth defending</p>
                 <div className="flex flex-col gap-3">
                   {project.approach.decisions.map((decision, i) => (
                     <SpotlightCard key={decision.title} accent={project.accent} className="p-5 sm:p-6">
                       <div className="flex gap-4">
-                        <span className="font-mono text-xs tabular-nums text-ember/70">
+                        <span className="font-mono text-xs tabular-nums text-ember/60">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div>
@@ -243,9 +233,9 @@ export default async function CaseStudyPage({ params }: Params) {
             {/* ---- Outcomes ------------------------------------------ */}
             <Reveal as="section" stagger={0.08}>
               <SectionMark index="03" label="Outcomes" />
-              <div className="grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2">
+              <div className="panel-grid rounded-2xl sm:grid-cols-2">
                 {project.outcomes.map((metric) => (
-                  <RevealItem key={metric.label} className="bg-card/50 p-6">
+                  <RevealItem key={metric.label} className="panel-cell p-6">
                     <MetricStat metric={metric} />
                   </RevealItem>
                 ))}
@@ -257,8 +247,8 @@ export default async function CaseStudyPage({ params }: Params) {
             {project.reflection && (
               <Reveal as="section">
                 <SectionMark index="04" label="In hindsight" />
-                <blockquote className="relative rounded-2xl border border-border/70 bg-card/40 p-6 sm:p-8">
-                  <Quote aria-hidden className="absolute right-6 top-6 size-8 text-ember/15" />
+                <blockquote className="relative rounded-2xl border border-border/70 bg-card/50 p-6 sm:p-8">
+                  <Quote aria-hidden className="absolute right-6 top-6 size-8 text-ember/10" />
                   <p className="text-pretty text-lg leading-relaxed sm:text-xl">
                     {project.reflection}
                   </p>
@@ -280,7 +270,7 @@ export default async function CaseStudyPage({ params }: Params) {
               {prev && (
                 <Link
                   href={`/projects/${prev.slug}`}
-                  className="group rounded-xl border border-border/70 bg-card/40 p-5 transition-colors duration-300 hover:border-ember/40"
+                  className="group rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-ember/40"
                 >
                   <span className="flex items-center gap-2 text-xs text-muted-foreground">
                     <ArrowLeft className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
@@ -296,7 +286,7 @@ export default async function CaseStudyPage({ params }: Params) {
               {next && (
                 <Link
                   href={`/projects/${next.slug}`}
-                  className="group rounded-xl border border-border/70 bg-card/40 p-5 text-right transition-colors duration-300 hover:border-ember/40 sm:col-start-2"
+                  className="group rounded-xl border border-border/70 bg-card/50 p-5 text-right transition-colors duration-300 hover:border-ember/40 sm:col-start-2"
                 >
                   <span className="flex items-center justify-end gap-2 text-xs text-muted-foreground">
                     Next

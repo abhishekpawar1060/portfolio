@@ -52,7 +52,7 @@ export default function Contact() {
         <Reveal className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">
           {/* ------------------------------------------------------- Email */}
           <div className="lg:col-span-8">
-            <p className="label mb-4">Write to me</p>
+            <p className="label mb-4 text-muted-foreground">Write to me</p>
 
             <div className="flex flex-wrap items-center gap-4">
               <Magnetic strength={0.14}>
@@ -83,7 +83,7 @@ export default function Contact() {
               </span>
               <span className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span className="relative grid size-3 place-items-center">
-                  <span className="absolute size-2 rounded-full bg-jade/50 animate-pulse-ring" />
+                  <span className="absolute size-2 rounded-full bg-jade/60 animate-pulse-ring" />
                   <span className="size-1.5 rounded-full bg-jade" />
                 </span>
                 {site.availability}
@@ -93,7 +93,7 @@ export default function Contact() {
 
           {/* ------------------------------------------------------ Socials */}
           <div className="lg:col-span-4 lg:flex lg:flex-col lg:items-end">
-            <p className="label mb-4">Elsewhere</p>
+            <p className="label mb-4 text-muted-foreground">Elsewhere</p>
             <SocialLinks />
           </div>
         </Reveal>

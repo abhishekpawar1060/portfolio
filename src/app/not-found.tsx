@@ -19,7 +19,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="group mt-8 inline-flex items-center gap-2 rounded-xl border border-border/70 bg-card/40 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
+          className="group mt-8 inline-flex items-center gap-2 rounded-xl border border-border/70 bg-card/50 px-5 py-3 text-sm font-medium backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
         >
           <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
           Back home

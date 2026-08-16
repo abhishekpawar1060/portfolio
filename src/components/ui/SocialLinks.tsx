@@ -29,7 +29,7 @@ export default function SocialLinks({
             target={href.startsWith("mailto:") ? undefined : "_blank"}
             rel="noreferrer noopener"
             aria-label={label}
-            className="group grid size-10 place-items-center rounded-lg border border-border/60 bg-card/40 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/40 hover:text-ember"
+            className="group grid size-10 place-items-center rounded-lg border border-border/60 bg-card/50 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-ember/40 hover:text-ember"
           >
             <Icon className={cn("size-[18px] transition-transform duration-300 group-hover:scale-110", iconClassName)} />
           </a>

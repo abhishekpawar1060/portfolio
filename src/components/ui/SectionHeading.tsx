@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionMark from "@/components/ui/SectionMark";
 import { cn } from "@/lib/utils";
 
 /**
@@ -33,10 +34,12 @@ export default function SectionHeading({
         className,
       )}
     >
-      {/* Index + rule */}
-      <div className={cn("flex items-center gap-4", align === "center" && "justify-center")}>
-        <span className="font-mono text-xs tabular-nums text-ember">{index}</span>
-        <span className="label !text-foreground/70">{kicker}</span>
+      <SectionMark
+        index={index}
+        label={kicker}
+        className={cn(align === "center" && "justify-center")}
+      >
+        {/* Same rule as the static SectionMark, but drawn on scroll. */}
         <motion.span
           aria-hidden
           className="hairline h-px flex-1 origin-left"
@@ -45,7 +48,7 @@ export default function SectionHeading({
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         />
-      </div>
+      </SectionMark>
 
       <motion.h2
         className={cn(

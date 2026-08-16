@@ -65,7 +65,11 @@ export default function About() {
                 Keep the wrapper div so the frame treatment survives.
               */}
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border/70 bg-card/50">
-                <div aria-hidden className="grid-field absolute inset-0 !opacity-[0.14]" />
+                <div
+                  aria-hidden
+                  className="grid-field absolute inset-0"
+                  style={{ "--grid-field-opacity": 0.14 } as React.CSSProperties}
+                />
                 <div
                   aria-hidden
                   className="absolute inset-0"
@@ -75,10 +79,10 @@ export default function About() {
                   }}
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <span className="grid size-16 place-items-center rounded-2xl border border-border/70 bg-card/70 font-display text-xl font-semibold backdrop-blur">
+                  <span className="grid size-16 place-items-center rounded-2xl border border-border/70 bg-card/80 font-display text-xl font-semibold backdrop-blur">
                     {site.shortName}
                   </span>
-                  <span className="label">Portrait placeholder</span>
+                  <span className="label text-muted-foreground">Portrait placeholder</span>
                 </div>
 
                 {/* Corner registration marks — instrument-panel detail */}
@@ -110,11 +114,11 @@ export default function About() {
             </Reveal>
 
             {/* Principles grid */}
-            <Reveal stagger={0.08} className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border/60 bg-border/60 sm:grid-cols-2">
+            <Reveal stagger={0.08} className="panel-grid mt-12 rounded-xl sm:grid-cols-2">
               {principles.map((p) => (
                 <RevealItem
                   key={p.title}
-                  className="group bg-card/50 p-5 transition-colors duration-300 hover:bg-card"
+                  className="panel-cell group p-5 transition-colors duration-300 hover:bg-card"
                 >
                   <div className="flex items-start gap-3">
                     <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-md border border-ember/30 bg-ember/10 text-ember transition-transform duration-300 group-hover:scale-110">
@@ -131,7 +135,7 @@ export default function About() {
 
             {/* Quick stack */}
             <Reveal className="mt-10" delay={0.1}>
-              <p className="label mb-3">Working stack</p>
+              <p className="label mb-3 text-muted-foreground">Working stack</p>
               <div className="flex flex-wrap gap-1.5">
                 {quickStack.map((item) => (
                   <Tag key={item}>{item}</Tag>
