@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Terminal } from "lucide-react";
 
 import Container from "@/components/ui/Container";
@@ -58,44 +59,40 @@ export default function About() {
           {/* ------------------------------------------------------ Portrait */}
           <Reveal direction="right" className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              {/*
-                TODO: REPLACE WITH YOUR PHOTO.
-                Drop the file in /public (e.g. /public/portrait.jpg) and swap
-                this whole block for:
-
-                  import Image from "next/image";
-                  <Image
-                    src="/portrait.jpg"
-                    alt="Your Name"
-                    width={640}
-                    height={800}
-                    priority
-                    className="size-full rounded-2xl object-cover"
-                  />
-
-                Keep the wrapper div so the frame treatment survives.
-              */}
+              {/* /public/portrait.png is a background-removed cutout, so the
+                  layers below show *through* it: grid, then glow, then the
+                  subject on top. Swap the file to change the photo — but keep
+                  it a transparent PNG or the treatment collapses. */}
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border/70 bg-card/50">
                 <div
                   aria-hidden
                   className="grid-field absolute inset-0"
                   style={{ "--grid-field-opacity": 0.14 } as React.CSSProperties}
                 />
+                {/* Glow sits BEHIND the subject — a wash on top would tint
+                    his face and look like a filter. */}
                 <div
                   aria-hidden
                   className="absolute inset-0"
                   style={{
                     background:
-                      "radial-gradient(120% 90% at 30% 10%, color-mix(in oklch, var(--ember) 22%, transparent), transparent 60%)",
+                      "radial-gradient(75% 55% at 50% 42%, color-mix(in oklch, var(--ember) 34%, transparent), transparent 70%)",
                   }}
                 />
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <span className="grid size-16 place-items-center rounded-2xl border border-border/70 bg-card/80 font-display text-xl font-semibold backdrop-blur">
-                    {site.shortName}
-                  </span>
-                  <span className="label text-muted-foreground">Portrait placeholder</span>
-                </div>
-
+                <Image
+                  src="/portrait.png"
+                  alt={`${site.name}, ${site.role}`}
+                  fill
+                  sizes="(min-width: 1024px) 22rem, 100vw"
+                  priority
+                  className="object-cover object-top"
+                />
+                {/* Grounds the cutout so it doesn't float — the subject fades
+                    into the frame rather than ending on a hard cut. */}
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card to-transparent"
+                />
                 {/* Corner registration marks — instrument-panel detail */}
                 {["left-3 top-3", "right-3 top-3", "left-3 bottom-3", "right-3 bottom-3"].map((pos) => (
                   <span
