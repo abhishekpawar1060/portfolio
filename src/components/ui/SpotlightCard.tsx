@@ -59,7 +59,7 @@ export default function SpotlightCard({
       }
       className={cn(
         "group/spot relative isolate overflow-hidden rounded-2xl border border-border/70",
-        "bg-card/70 backdrop-blur-sm transition-[border-color,box-shadow] duration-500",
+        "bg-card/80 card-raise backdrop-blur-sm transition-[border-color,box-shadow] duration-500",
         "hover:border-[color-mix(in_oklch,var(--accent)_45%,transparent)] hover:shadow-warm",
         className,
       )}

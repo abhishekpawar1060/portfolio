@@ -64,7 +64,7 @@ export default function ArchitectureDiagram({
                             {node.detail}
                           </p>
                           {node.tech && (
-                            <p className="mt-2 font-mono text-[0.65rem] text-ember/80">{node.tech}</p>
+                            <p className="mt-2 font-mono text-[0.65rem] text-ember">{node.tech}</p>
                           )}
                         </div>
                       ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -30,7 +30,9 @@ function offsetFor(direction: Direction) {
  *  - `stagger`: animates its direct children in sequence (children must be
  *    <Reveal.Item> or any motion element using the "item" variant)
  *
- * Honours prefers-reduced-motion by rendering the final state immediately.
+ * Reduced motion is handled globally by <MotionConfig reducedMotion="user">
+ * in ThemeProvider — never branch on useReducedMotion() here to change what
+ * gets rendered, or the SSR'd `opacity: 0` sticks and the content disappears.
  */
 export default function Reveal({
   children,
@@ -54,12 +56,7 @@ export default function Reveal({
   once?: boolean;
   as?: "div" | "section" | "ul" | "li" | "article" | "header" | "span";
 }) {
-  const reduced = useReducedMotion();
   const MotionTag = motion[Tag] as typeof motion.div;
-
-  if (reduced) {
-    return <Tag className={className}>{children}</Tag>;
-  }
 
   const variants: Variants = stagger
     ? {
@@ -105,12 +102,7 @@ export function RevealItem({
   duration?: number;
   as?: "div" | "li" | "article" | "span" | "p";
 }) {
-  const reduced = useReducedMotion();
   const MotionTag = motion[Tag] as typeof motion.div;
-
-  if (reduced) {
-    return <Tag className={className}>{children}</Tag>;
-  }
 
   return (
     <MotionTag

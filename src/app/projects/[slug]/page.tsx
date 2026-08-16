@@ -158,7 +158,7 @@ export default async function CaseStudyPage({ params }: Params) {
                 <div className="mt-4 flex flex-col gap-4">
                   {project.stack.map((group) => (
                     <div key={group.group}>
-                      <p className="mb-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground/70">
+                      <p className="mb-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
                         {group.group}
                       </p>
                       <div className="flex flex-wrap gap-1.5">

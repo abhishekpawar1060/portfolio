@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+// useReducedMotion is used ONLY inside an effect here (to pause the rotating
+// headline). Never use it to change rendered output — see ThemeProvider.
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
 
@@ -72,8 +74,8 @@ export default function Hero() {
                   <motion.span
                     key={word + i}
                     className="mr-[0.25em] inline-block"
-                    initial={reduced ? undefined : { opacity: 0, y: "0.5em", filter: "blur(6px)" }}
-                    animate={reduced ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, y: "0.5em", filter: "blur(6px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{
                       duration: 0.85,
                       delay: 0.15 + i * 0.07,
@@ -90,9 +92,9 @@ export default function Hero() {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={site.roles[roleIndex]}
-                    initial={reduced ? undefined : { y: "100%", opacity: 0 }}
+                    initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    exit={reduced ? undefined : { y: "-100%", opacity: 0 }}
+                    exit={{ y: "-100%", opacity: 0 }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                     className="text-gradient absolute inset-x-0 block"
                   >
@@ -191,7 +193,7 @@ export default function Hero() {
           <span className="relative h-10 w-px overflow-hidden bg-border">
             <motion.span
               className="absolute inset-x-0 top-0 h-4 bg-ember"
-              animate={reduced ? undefined : { y: ["-100%", "260%"] }}
+              animate={{ y: ["-100%", "260%"] }}
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
             />
           </span>

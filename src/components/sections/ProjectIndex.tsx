@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Minus, Plus } from "lucide-react";
 
 import MetricStat from "@/components/ui/MetricStat";
@@ -19,7 +19,6 @@ import { cn } from "@/lib/utils";
  */
 export default function ProjectIndex() {
   const [openSlug, setOpenSlug] = useState<string | null>(projects[0]?.slug ?? null);
-  const reduced = useReducedMotion();
 
   return (
     <ul className="border-t border-border/60">
@@ -81,9 +80,9 @@ export default function ProjectIndex() {
               {isOpen && (
                 <motion.div
                   id={`project-panel-${project.slug}`}
-                  initial={reduced ? undefined : { height: 0, opacity: 0 }}
+                  initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reduced ? undefined : { height: 0, opacity: 0 }}
+                  exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >

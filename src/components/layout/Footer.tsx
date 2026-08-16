@@ -15,7 +15,7 @@ export default function Footer() {
           <div>
             <p className="font-display text-sm font-semibold tracking-tight">{site.name}</p>
             <p className="mt-1 max-w-xs text-sm text-muted-foreground">{site.tagline}</p>
-            <p className="mt-4 font-mono text-[0.7rem] text-muted-foreground/70">
+            <p className="mt-4 font-mono text-[0.7rem] text-muted-foreground">
               © {year} · Built with Next.js and too many revisions
             </p>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import Container from "@/components/ui/Container";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
@@ -20,7 +20,7 @@ const accentClasses = {
 /** Five-segment level meter. Reads faster than a percentage bar and doesn't
  *  pretend to a precision that "how good are you at Kubernetes" doesn't have. */
 function LevelMeter({ level, accent }: { level: number; accent: keyof typeof accentClasses }) {
-  const reduced = useReducedMotion();
+
 
   return (
     <span className="flex shrink-0 items-center gap-[3px]" aria-label={`${level} out of ${SEGMENTS}`}>
@@ -31,8 +31,8 @@ function LevelMeter({ level, accent }: { level: number; accent: keyof typeof acc
             "h-3 w-[3px] rounded-full origin-bottom",
             i < level ? accentClasses[accent].fill : "bg-border",
           )}
-          initial={reduced ? undefined : { scaleY: 0.2, opacity: 0.4 }}
-          whileInView={reduced ? undefined : { scaleY: 1, opacity: 1 }}
+          initial={{ scaleY: 0.2, opacity: 0.4 }}
+          whileInView={{ scaleY: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.4, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
         />
@@ -94,7 +94,7 @@ export default function Skills() {
                             {skill.name}
                           </span>
                           {skill.note && (
-                            <span className="shrink-0 font-mono text-[0.65rem] text-muted-foreground/70">
+                            <span className="shrink-0 font-mono text-[0.65rem] text-muted-foreground">
                               {skill.note}
                             </span>
                           )}

@@ -7,6 +7,33 @@ Dark-first, token-driven design system. All content is placeholder — see below
 npm run dev     # http://localhost:3000
 npm run build
 npm run lint
+
+# with the site running:
+npm run audit   # rendering guard — fails on hydration errors / invisible text
+npm run shots   # screenshots to .screenshots/ (gitignored)
+```
+
+## Visual checks
+
+Both scripts drive your installed Chrome through `playwright-core`, so there's
+no bundled browser download. If you don't have Chrome: `CHANNEL=msedge npm run shots`.
+Point them elsewhere with `SHOT_URL=https://… npm run audit`.
+
+**`npm run audit` is the one that matters.** It loads every route in both
+themes *and* both motion modes, and fails if it finds a hydration mismatch or
+text rendering at `opacity: 0`.
+
+That check exists because of a real bug this repo shipped and then fixed:
+branching on `useReducedMotion()` during render made the server emit
+`opacity: 0` while the client emitted no animation props. React declines to
+patch that mismatch, so entire sections stayed permanently invisible for anyone
+with "reduce motion" enabled — while `build`, `tsc` and `lint` all passed
+green. Reduced motion is handled globally by `<MotionConfig reducedMotion="user">`
+in `ThemeProvider`; don't reintroduce render-time branching on that hook.
+
+```bash
+npm run shots -- light         # light theme, desktop
+npm run shots -- dark mobile   # dark theme, 390px
 ```
 
 ## Swapping in your real content

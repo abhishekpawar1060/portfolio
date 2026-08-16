@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import type { Project } from "@/types";
@@ -28,7 +28,6 @@ export default function ProjectCard({
   index: number;
   variant?: "feature" | "standard";
 }) {
-  const reduced = useReducedMotion();
   const isFeature = variant === "feature";
 
   const accentText =
@@ -110,7 +109,7 @@ export default function ProjectCard({
             <motion.span
               aria-hidden
               className={cn("grid size-7 place-items-center rounded-full border border-border/70", accentText)}
-              whileHover={reduced ? undefined : { scale: 1.1 }}
+              whileHover={{ scale: 1.1 }}
             >
               <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover/spot:-translate-y-0.5 group-hover/spot:translate-x-0.5" />
             </motion.span>

@@ -36,7 +36,7 @@ export const site = {
 
   // TODO: replace all links below
   email: "hello@example.com",
-  resume: "/resume.pdf",
+  resume: "/Abhishek_Pawar_Resume.pdf",
 
   socials: {
     github: "https://github.com/your-handle",

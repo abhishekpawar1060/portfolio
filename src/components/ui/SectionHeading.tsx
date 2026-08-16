@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -24,7 +24,6 @@ export default function SectionHeading({
   align?: "left" | "center";
   className?: string;
 }) {
-  const reduced = useReducedMotion();
 
   return (
     <div
@@ -41,8 +40,8 @@ export default function SectionHeading({
         <motion.span
           aria-hidden
           className="hairline h-px flex-1 origin-left"
-          initial={reduced ? undefined : { scaleX: 0 }}
-          whileInView={reduced ? undefined : { scaleX: 1 }}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         />
@@ -53,8 +52,8 @@ export default function SectionHeading({
           "max-w-3xl text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-4xl lg:text-5xl",
           align === "center" && "mx-auto",
         )}
-        initial={reduced ? undefined : { opacity: 0, y: 20 }}
-        whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -67,8 +66,8 @@ export default function SectionHeading({
             "max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg",
             align === "center" && "mx-auto",
           )}
-          initial={reduced ? undefined : { opacity: 0, y: 16 }}
-          whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >

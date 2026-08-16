@@ -75,17 +75,21 @@
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.973 0.006 85);
+  /* The page sits a few points BELOW card white so panels read as raised.
+     At 0.973 the background was within 0.02 L of --card and every card
+     dissolved into the page — the dark theme hid this because there the card
+     is lighter than the background and separates for free. */
+  --background: oklch(0.952 0.008 84);
   --foreground: oklch(0.205 0.012 62);
-  --surface: oklch(0.955 0.008 82);
-  --elevated: oklch(0.995 0.004 85);
+  --surface: oklch(0.932 0.010 82);
+  --elevated: oklch(0.998 0.003 85);
 
   --card: oklch(0.993 0.004 85);
   --card-foreground: oklch(0.205 0.012 62);
   --popover: oklch(0.995 0.004 85);
   --popover-foreground: oklch(0.205 0.012 62);
 
-  --primary: oklch(0.575 0.155 48);
+  --primary: oklch(0.54 0.155 48);
   --primary-foreground: oklch(0.99 0.005 85);
   --secondary: oklch(0.935 0.009 80);
   --secondary-foreground: oklch(0.25 0.012 62);
@@ -95,12 +99,16 @@
   --accent-foreground: oklch(0.25 0.012 62);
   --destructive: oklch(0.552 0.19 26);
 
-  --border: oklch(0.878 0.011 78);
-  --input: oklch(0.878 0.011 78);
-  --ring: oklch(0.575 0.155 48 / 45%);
+  --border: oklch(0.858 0.012 78);
+  --input: oklch(0.858 0.012 78);
+  --ring: oklch(0.54 0.155 48 / 45%);
 
-  --ember: oklch(0.575 0.155 48);
-  --ember-soft: oklch(0.68 0.12 62);
+  /* Darker than the dark-theme ember: on warm paper the L=0.575 version only
+     reached 4.31:1, just under the 4.5 body-text bar. L=0.54 gives 4.99:1 on
+     the page and 5.30:1 on cards. Reads as burnt orange in light mode. */
+  --ember: oklch(0.54 0.155 48);
+  /* Only used in display-size gradient text (3:1 bar); 0.68 gave 2.75:1. */
+  --ember-soft: oklch(0.64 0.12 62);
   --jade: oklch(0.505 0.105 168);
   --iris: oklch(0.512 0.142 288);
 
@@ -113,6 +121,10 @@
   --grid-opacity: 0.055;
   --grain-opacity: 0.035;
   --shadow-color: 30 20 12;
+  /* Resting card elevation. Light mode needs it to separate surfaces; dark
+     mode gets that separation from lightness alone, and a shadow there just
+     reads as mud. */
+  --card-shadow: 0 1px 2px rgb(40 28 18 / 0.05), 0 10px 24px -14px rgb(40 28 18 / 0.16);
 }
 
 /* ---------------------------------------------------------------------------
@@ -155,6 +167,7 @@
   --grid-opacity: 0.09;
   --grain-opacity: 0.055;
   --shadow-color: 0 0 0;
+  --card-shadow: none;
 }
 
 /* ---------------------------------------------------------------------------
@@ -350,6 +363,11 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Resting elevation for card surfaces — a no-op in dark mode by design. */
+@utility card-raise {
+  box-shadow: var(--card-shadow);
 }
 
 /* Card lift shadow tuned to the warm palette (neutral shadows look muddy here). */

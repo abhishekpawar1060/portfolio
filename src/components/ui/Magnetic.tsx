@@ -1,11 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 /**
  * Wraps a control so it drifts slightly toward the cursor while hovered.
  * Subtle by design — `strength` above ~0.4 starts to feel like a gimmick.
+ *
+ * The reduced-motion check lives inside the pointer handler, not in render:
+ * branching the returned tree on a client-only media query desynchronises SSR
+ * and leaves motion-controlled elements stuck at their initial style.
  */
 export default function Magnetic({
   children,
@@ -17,14 +21,11 @@ export default function Magnetic({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
   const springY = useSpring(y, { stiffness: 220, damping: 18, mass: 0.4 });
-
-  if (reduced) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
@@ -35,6 +36,7 @@ export default function Magnetic({
         // Coarse pointers (touch) report a position on tap, which would snap
         // the element sideways mid-press. Only track a real cursor.
         if (e.pointerType !== "mouse") return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const rect = ref.current?.getBoundingClientRect();
         if (!rect) return;
         x.set((e.clientX - (rect.left + rect.width / 2)) * strength);

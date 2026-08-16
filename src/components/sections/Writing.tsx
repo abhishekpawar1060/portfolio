@@ -62,7 +62,7 @@ export default function Writing() {
                   <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground">
                     {post.excerpt}
                   </p>
-                  <p className="mt-2 font-mono text-[0.7rem] text-muted-foreground/70">
+                  <p className="mt-2 font-mono text-[0.7rem] text-muted-foreground">
                     {post.readingTime} read
                   </p>
                 </div>

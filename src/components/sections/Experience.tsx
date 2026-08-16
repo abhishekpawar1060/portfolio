@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 
 import Container from "@/components/ui/Container";
@@ -20,7 +20,6 @@ import { cn } from "@/lib/utils";
  */
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -50,7 +49,7 @@ export default function Experience() {
           <motion.div
             aria-hidden
             className="absolute bottom-0 left-[7px] top-2 w-px origin-top bg-gradient-to-b from-ember via-ember/60 to-transparent sm:left-[calc(11rem+7px)]"
-            style={reduced ? { scaleY: 1 } : { scaleY: lineScale }}
+            style={{ scaleY: lineScale }}
           />
 
           <ol className="flex flex-col gap-12 sm:gap-14">
@@ -60,7 +59,7 @@ export default function Experience() {
                   {/* --- Period rail (desktop) -------------------------- */}
                   <div className="hidden w-44 shrink-0 pt-0.5 text-right sm:block">
                     <p className="font-mono text-xs text-muted-foreground">{item.period}</p>
-                    <p className="mt-1 font-mono text-[0.7rem] text-muted-foreground/60">
+                    <p className="mt-1 font-mono text-[0.7rem] text-muted-foreground">
                       {item.location}
                     </p>
                   </div>
@@ -138,7 +137,7 @@ export default function Experience() {
                   <div className="min-w-0">
                     <h3 className="font-display text-sm font-semibold tracking-tight">{item.degree}</h3>
                     <p className="mt-0.5 text-sm text-muted-foreground">{item.school}</p>
-                    <p className="mt-1.5 font-mono text-[0.7rem] text-muted-foreground/70">
+                    <p className="mt-1.5 font-mono text-[0.7rem] text-muted-foreground">
                       {item.period} · {item.note}
                     </p>
                   </div>
