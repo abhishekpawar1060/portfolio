@@ -1,37 +1,33 @@
-import Link from "next/link";
-import { projects } from "@/data/projects";
+import type { Metadata } from "next";
+
+import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+import ProjectIndex from "@/components/sections/ProjectIndex";
+import Backdrop from "@/components/visuals/Backdrop";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Full index of case studies — retrieval, agents, ML systems and platform work.",
+};
 
 export default function ProjectsPage() {
   return (
-    <div className="mx-auto max-w-7xl px-6 py-20">
+    <div className="relative">
+      <section className="relative overflow-hidden pb-16 pt-32 sm:pt-40">
+        <Backdrop variant="subtle" />
+        <Container size="wide">
+          <SectionHeading
+            index="—"
+            kicker="Index"
+            title="Everything, in order."
+            description="The full archive. Expand a row for the summary, or open the case study for the architecture and the numbers."
+          />
+        </Container>
+      </section>
 
-      <h1 className="mb-10 text-5xl font-bold">
-        Projects
-      </h1>
-
-      <div className="grid gap-8 md:grid-cols-2">
-
-        {projects.map((project) => (
-          <Link
-            key={project.id}
-            href={`/projects/${project.slug}`}
-          >
-            <div className="rounded-xl border-border p-6">
-
-              <h2 className="text-2xl font-bold">
-                {project.title}
-              </h2>
-
-              <p className="mt-3 text-muted-foreground">
-                {project.description}
-              </p>
-
-            </div>
-          </Link>
-        ))}
-
-      </div>
-
+      <Container size="wide" className="pb-24">
+        <ProjectIndex />
+      </Container>
     </div>
   );
 }

@@ -1,45 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
+/**
+ * Dark/light switch.
+ *
+ * Deliberately stateless: rather than tracking a `mounted` flag (which forces a
+ * re-render and trips the cascading-render lint rule), both icons are always in
+ * the DOM and the `dark:` variant decides which one is visible. next-themes
+ * sets the class on <html> in a blocking script before first paint, so the
+ * correct icon is showing immediately with no flash and no hydration mismatch.
+ */
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <motion.button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.92 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className="relative rounded-lg border-border bg-background p-2 text-foreground overflow-hidden"
-      aria-label="Toggle theme"
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label="Toggle colour theme"
+      className="group relative grid size-9 place-items-center overflow-hidden rounded-lg border border-border/70 bg-card/60 text-muted-foreground backdrop-blur transition-colors duration-300 hover:border-ember/40 hover:text-ember"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        {mounted ? (
-          <motion.span
-            key={theme === "dark" ? "sun" : "moon"}
-            initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-            animate={{ rotate: 0, opacity: 1, scale: 1 }}
-            exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="block"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </motion.span>
-        ) : (
-          // Reserve the icon's footprint before mount so the button
-          // doesn't shift size once the real icon appears.
-          <span className="block h-[18px] w-[18px]" />
-        )}
-      </AnimatePresence>
-    </motion.button>
+      <Moon className="col-start-1 row-start-1 size-[17px] rotate-0 scale-100 opacity-100 transition-all duration-300 dark:-rotate-90 dark:scale-50 dark:opacity-0" />
+      <Sun className="col-start-1 row-start-1 size-[17px] rotate-90 scale-50 opacity-0 transition-all duration-300 dark:rotate-0 dark:scale-100 dark:opacity-100" />
+    </button>
   );
 }

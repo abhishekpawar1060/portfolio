@@ -1,57 +1,107 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import ThemeProvider from "@/components/providers/ThemeProvider";
+import { site } from "@/data/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* ----------------------------------------------------------------------------
+   TYPE PAIRING
+   Space Grotesk (display)  — geometric with odd details; carries the headlines
+   Inter (body)             — quiet, high legibility at small sizes
+   JetBrains Mono (mono)    — used as a design element for labels and metrics
+   Swap any of these for your own; only these three declarations change.
+   ------------------------------------------------------------------------- */
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
-    default: "Abhishek Pawar",
-    template: "%s | Abhishek Pawar",
+    default: `${site.name} — ${site.role}`,
+    template: `%s · ${site.name}`,
   },
-
-  description:
-    "AI/ML Engineer and Full Stack Developer specializing in RAG Systems, Agentic AI, FastAPI, React, Next.js, and scalable web applications.",
-
+  description: site.positioning,
   keywords: [
-    "Abhishek Pawar",
     "AI Engineer",
     "Machine Learning Engineer",
-    "Full Stack Developer",
-    "Next.js",
-    "React",
-    "FastAPI",
-    "RAG",
     "LLM",
-    "Portfolio",
+    "RAG",
+    "Retrieval",
+    "Agents",
+    "MLOps",
+    site.name,
+  ],
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: site.url,
+    title: `${site.name} — ${site.role}`,
+    description: site.tagline,
+    siteName: site.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.role}`,
+    description: site.tagline,
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f7f4ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#171512" },
   ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
+      // next-themes writes the theme class here after mount
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // Next 16 no longer forces scroll-behavior back to `auto` during route
+      // transitions unless this attribute is present. Without it, the global
+      // `scroll-behavior: smooth` makes navigating to a case study animate a
+      // long scroll instead of landing at the top.
+      data-scroll-behavior="smooth"
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-full">
+      <body className="min-h-svh bg-background text-foreground">
         <ThemeProvider>
-          {children}
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-ember focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"
+          >
+            Skip to content
+          </a>
+
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
