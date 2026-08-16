@@ -15,7 +15,7 @@ import { site } from "@/data/site";
  * Contact. No form — a form on a personal site is a spam funnel with extra
  * steps. A large mailto and a copy button convert better and need no backend.
  *
- * TODO: email, location and socials all live in src/data/site.ts.
+ * Email, location and socials all live in src/data/site.ts.
  */
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -42,11 +42,11 @@ export default function Contact() {
           kicker="Contact"
           title={
             <>
-              Have a system that&apos;s{" "}
-              <span className="text-gradient">plausible and wrong?</span>
+              Looking for someone to build{" "}
+              <span className="text-gradient">agents that hold up?</span>
             </>
           }
-          description="I'm interested in retrieval, agent reliability and evaluation problems — especially the ones that have resisted a couple of attempts already."
+          description="I'm open to AI/ML engineering roles. Happy to talk through anything in the case studies — the guardrail design and the MCP tool layer are the parts I'd most enjoy arguing about."
         />
 
         <Reveal className="mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">

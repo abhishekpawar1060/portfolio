@@ -1,57 +1,52 @@
 /* ============================================================================
-   SITE CONFIG — TODO: replace every value below with your real details.
+   SITE CONFIG
    ----------------------------------------------------------------------------
    This single object feeds the nav, hero, footer, contact section and all
    page metadata. Change it once and it propagates everywhere.
    ========================================================================= */
 
 export const site = {
-  // TODO: replace with your real name
-  name: "Your Name",
-  /** Short form used in the nav mark and footer. */
-  shortName: "YN",
-  // TODO: replace with your real title
+  name: "Abhishek Pawar",
+  shortName: "AP",
   role: "AI/ML Engineer",
 
-  /** Rotating phrases in the hero. TODO: make these yours — 3–5 works best. */
+  /** Rotating phrases in the hero. 3–5 works best. */
   roles: [
-    "retrieval systems",
-    "agent orchestration",
-    "inference infrastructure",
-    "evaluation harnesses",
+    "multi-agent systems",
+    "MCP tool servers",
+    "clinical data platforms",
+    "LLM guardrails",
   ],
 
-  /** The positioning statement. This is the most important sentence on the
-   *  site — it should say what you do and who for. TODO: rewrite. */
+  /** The positioning statement — the most important sentence on the site. */
   positioning:
-    "I build language-model systems that survive contact with production — retrieval that stays grounded, agents that fail loudly, and inference that holds its latency budget under load.",
+    "I build multi-agent LLM systems for regulated clinical data, where a confidently wrong answer is a compliance problem rather than a bad demo. Agent orchestration on Google ADK, self-hosted MCP tool servers, and the guardrails that decide what the system refuses to do.",
 
   /** One-line descriptor under the nav mark and in metadata. */
-  tagline: "Building LLM systems that hold up in production.",
+  tagline: "Multi-agent LLM systems for regulated clinical data.",
 
-  // TODO: replace with your city
   location: "Pune, India",
-  /** Availability line in the contact section. TODO: update or set to null. */
-  availability: "Open to senior IC roles and select consulting",
+  /** Shown in the hero pill and beside the contact section's status dot.
+   *  Keep it short — long text crowds the pill on narrow screens. */
+  availability: "Open to AI/ML engineering roles",
 
-  // TODO: replace all links below
-  email: "hello@example.com",
+  email: "abhishekpawar7218@gmail.com",
   resume: "/Abhishek_Pawar_Resume.pdf",
 
   socials: {
-    github: "https://github.com/your-handle",
-    linkedin: "https://linkedin.com/in/your-handle",
-    x: "https://x.com/your-handle",
-    scholar: "https://scholar.google.com/citations?user=your-id",
+    github: "https://github.com/abhishekpawar1060",
+    linkedin: "https://www.linkedin.com/in/abhishekpawar7218",
+    leetcode: "https://leetcode.com/u/abhishekpawar7218",
   },
 
   /** Canonical URL — used for metadata + Open Graph. TODO: set your domain. */
   url: "https://example.com",
 } as const;
 
-/** Headline stats in the hero. TODO: replace with real numbers (or delete). */
+/** Headline stats in the hero. Every one of these is verifiable from work
+ *  you've actually shipped — keep it that way. */
 export const heroStats = [
-  { value: "6+", label: "Years shipping ML" },
-  { value: "14", label: "Systems in production" },
-  { value: "40M+", label: "Daily inferences served" },
+  { value: "6", label: "Agent topologies shipped" },
+  { value: "29+", label: "MCP tools self-hosted" },
+  { value: "3", label: "LLM providers integrated" },
 ] as const;

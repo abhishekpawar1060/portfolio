@@ -6,26 +6,37 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Tag from "@/components/ui/Tag";
 import { site } from "@/data/site";
 
-/* TODO: rewrite this bio. Two or three short paragraphs is the right length —
-   the projects section carries the detail, this just gives it a voice. */
 const bio = [
-  "I started out training forecasting models that nobody could deploy, which taught me early that a model is maybe a fifth of the work. The rest is retrieval that stays grounded, evaluation you can trust, and infrastructure that doesn't fold at peak.",
-  "These days I work mostly on language-model systems: hybrid retrieval, agent orchestration, and the unglamorous evaluation harnesses that keep both honest. I like problems where the failure mode is subtle — where the system produces something plausible and wrong, and finding out why is the actual job.",
-  "Outside of that I write about what breaks in production, mentor engineers moving from notebooks to services, and spend an unreasonable amount of time reading incident reports.",
+  "I build multi-agent LLM systems for clinical trial data — a domain where a confidently wrong answer isn't a bad demo, it's a regulatory problem. Most of my work sits in the gap between a model that produces plausible text and a system you can actually let near a validated dataset.",
+  "Day to day that means agent orchestration on Google's ADK, self-hosted MCP servers exposing database and clinical-API tools, and the guardrail layers underneath: static SQL validation, read-only allow-lists, per-tenant access policy, a safety classifier on every generation. The interesting problems are rarely the prompts — they're the retries, the idempotency, and deciding what a system should refuse to do.",
+  "I finished my B.Tech in Computer Science in 2025 and have been shipping production LLM systems since before I graduated. I'm still early enough in this to be genuinely curious about how other people solve these problems, and far enough in to know which parts break.",
 ];
 
-/* TODO: replace with the principles you'd actually defend in a design review. */
+/* Drawn from decisions actually made on the systems in the timeline —
+   change these if your thinking changes, but keep them defensible. */
 const principles = [
-  { title: "Measure before you tune", detail: "An eval you trust beats a month of intuition." },
-  { title: "Fail loudly", detail: "A silent wrong answer costs more than a crash." },
-  { title: "Boring where it counts", detail: "Novel architecture, conventional operations." },
-  { title: "Own the whole path", detail: "From ingestion to the on-call page at 3am." },
+  {
+    title: "Guard the boundary",
+    detail: "Validate and allow-list before the query runs, not after it returns.",
+  },
+  {
+    title: "Retry, don't restart",
+    detail: "Idempotent consumers and tool-level recovery beat re-running the whole job.",
+  },
+  {
+    title: "Keep a human on the merge",
+    detail: "Extraction proposes, a reviewer approves — especially on regulated data.",
+  },
+  {
+    title: "Route by cost, not habit",
+    detail: "Cheap models for classification, strong ones for synthesis and planning.",
+  },
 ];
 
-/* TODO: the stack you want front and centre. Full breakdown is in data/skills.ts */
+/* The stack front and centre. Full breakdown lives in data/skills.ts */
 const quickStack = [
-  "Python", "PyTorch", "vLLM", "LangGraph", "Temporal",
-  "Postgres / pgvector", "Kafka", "Ray", "Kubernetes", "TypeScript",
+  "Python", "Google ADK", "MCP", "FastAPI", "React",
+  "PostgreSQL", "MongoDB", "Weaviate", "Kafka", "Airflow", "Azure",
 ];
 
 export default function About() {
@@ -39,8 +50,8 @@ export default function About() {
         <SectionHeading
           index="02"
           kicker="About"
-          title="A model is about a fifth of the work."
-          description="The other four fifths are the parts nobody demos."
+          title="Plausible text is the easy part."
+          description="The rest is guardrails, retries and knowing what the system should refuse to do."
         />
 
         <div className="mt-14 grid gap-12 lg:grid-cols-12 lg:gap-16">

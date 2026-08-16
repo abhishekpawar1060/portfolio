@@ -2,13 +2,13 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, GraduationCap } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Tag from "@/components/ui/Tag";
-import { experience, education } from "@/data/experience";
+import { certifications, education, experience } from "@/data/experience";
 import { cn } from "@/lib/utils";
 
 /**
@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
  * whose scaleY is bound to scroll progress, so the line appears to draw itself
  * as you read down the section.
  *
- * TODO: roles live in src/data/experience.ts.
+ * Roles and education live in src/data/experience.ts.
  */
 export default function Experience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,8 +36,8 @@ export default function Experience() {
         <SectionHeading
           index="04"
           kicker="Experience"
-          title="Where I've been putting models into production."
-          description="Six years of moving from notebooks that worked to services that stayed working."
+          title="Where I've been putting agents into production."
+          description="Short, but dense — an internship that became a platform, and a clinical-data role I started before I graduated."
         />
 
         <div ref={containerRef} className="relative mt-14">
@@ -127,7 +127,14 @@ export default function Experience() {
 
         {/* --- Education ------------------------------------------------- */}
         {education.length > 0 && (
-          <Reveal stagger={0.1} className="panel-grid mt-16 rounded-xl sm:grid-cols-2">
+          <Reveal
+            stagger={0.1}
+            className={cn(
+              "panel-grid mt-16 rounded-xl",
+              // A single entry in a 2-col grid leaves a dead empty cell.
+              education.length > 1 && "sm:grid-cols-2",
+            )}
+          >
             {education.map((item) => (
               <RevealItem key={item.degree} className="panel-cell p-5">
                 <div className="flex items-start gap-3">
@@ -138,13 +145,57 @@ export default function Experience() {
                     <h3 className="font-display text-sm font-semibold tracking-tight">{item.degree}</h3>
                     <p className="mt-0.5 text-sm text-muted-foreground">{item.school}</p>
                     <p className="mt-1.5 font-mono text-[0.7rem] text-muted-foreground">
-                      {item.period} · {item.note}
+                      {/* `note` is optional — don't render a dangling separator. */}
+                      {[item.period, item.note].filter(Boolean).join(" · ")}
                     </p>
                   </div>
                 </div>
               </RevealItem>
             ))}
           </Reveal>
+        )}
+
+        {/* --- Certifications -------------------------------------------- */}
+        {certifications.length > 0 && (
+          <div className="mt-10">
+            <p className="label mb-4 text-muted-foreground">Certifications</p>
+            <Reveal
+              stagger={0.08}
+              className={cn(
+                "panel-grid rounded-xl",
+                certifications.length > 1 && "sm:grid-cols-2",
+              )}
+            >
+              {certifications.map((cert) => (
+                <RevealItem key={cert.name}>
+                  <a
+                    href={cert.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="panel-cell group flex h-full items-start gap-3 p-5 transition-colors duration-300 hover:bg-card"
+                  >
+                    <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border border-ember/30 bg-ember/10 text-ember">
+                      <BadgeCheck className="size-3.5" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-start gap-2">
+                        <span className="font-display text-sm font-semibold tracking-tight transition-colors duration-300 group-hover:text-ember">
+                          {cert.name}
+                        </span>
+                        <ArrowUpRight
+                          aria-hidden
+                          className="mt-0.5 size-3.5 shrink-0 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember"
+                        />
+                      </span>
+                      <span className="mt-0.5 block text-sm text-muted-foreground">
+                        {cert.issuer}
+                      </span>
+                    </span>
+                  </a>
+                </RevealItem>
+              ))}
+            </Reveal>
+          </div>
         )}
       </Container>
     </section>

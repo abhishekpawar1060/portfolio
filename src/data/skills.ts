@@ -1,7 +1,7 @@
 import type { SkillCategory } from "@/types";
 
 /* ============================================================================
-   SKILLS — TODO: replace with your real stack.
+   SKILLS
    ----------------------------------------------------------------------------
    `level` is 1–5 and drives the visible indicator, so keep it honest:
      5 = built and operated it in production, could debug it at 3am
@@ -10,76 +10,77 @@ import type { SkillCategory } from "@/types";
      2 = working knowledge
      1 = have touched it
 
-   Category order is the display order. 4 categories fits the layout best;
-   the grid handles 3–6 without changes.
+   NOTE: the levels below are an estimate inferred from what your CV shows you
+   actually shipped. Go through them once and correct anything that's off —
+   the Skills section explicitly promises "no inflation", so it should be true.
    ========================================================================= */
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "LLM & Agent Frameworks",
-    blurb: "Retrieval, orchestration, and everything that keeps a model honest.",
+    name: "AI & Agents",
+    blurb: "Orchestration, tool protocols, and the guardrails that keep them honest.",
     accent: "ember",
     skills: [
-      { name: "RAG architecture", level: 5, note: "production" },
-      { name: "LangGraph", level: 4 },
-      { name: "Temporal", level: 4, note: "durable agents" },
-      { name: "vLLM", level: 5, note: "self-hosted" },
-      { name: "DSPy", level: 3 },
-      { name: "Evaluation harnesses", level: 5 },
-      { name: "Structured output", level: 5 },
-      { name: "Fine-tuning / LoRA", level: 4 },
+      { name: "Google ADK", level: 5, note: "production" },
+      { name: "Multi-agent orchestration", level: 5, note: "6 topologies" },
+      { name: "Model Context Protocol", level: 5, note: "self-hosted" },
+      { name: "Guardrails & grounding", level: 5 },
+      { name: "Structured output", level: 5, note: "Pydantic" },
+      { name: "OpenAI / Gemini / DeepSeek", level: 4 },
+      { name: "RAG", level: 4 },
+      { name: "Watsonx Granite Guardian", level: 3, note: "safety gate" },
     ],
   },
   {
-    name: "ML & Data",
-    blurb: "From feature pipelines to the models that consume them.",
+    name: "Data & Retrieval",
+    blurb: "Where the agents get their facts, and how those facts stay consistent.",
     accent: "jade",
     skills: [
-      { name: "PyTorch", level: 5 },
-      { name: "Transformers", level: 5 },
-      { name: "XGBoost", level: 4 },
-      { name: "Apache Flink", level: 4, note: "streaming" },
-      { name: "Kafka", level: 4 },
-      { name: "Feature stores", level: 4, note: "Feast" },
-      { name: "Airflow / dbt", level: 4 },
-      { name: "pandas / Polars", level: 5 },
+      { name: "PostgreSQL", level: 5 },
+      { name: "MongoDB", level: 5 },
+      { name: "Apache Kafka", level: 4, note: "idempotent" },
+      { name: "Apache Airflow", level: 4, note: "SDTM ETL" },
+      { name: "Weaviate", level: 4, note: "hybrid search" },
+      { name: "SQLGlot", level: 4, note: "static validation" },
+      { name: "Neo4j", level: 3 },
+      { name: "BM25 + dense retrieval", level: 4 },
     ],
   },
   {
-    name: "Infrastructure",
-    blurb: "Where models stop being notebooks and start having an on-call rota.",
+    name: "Backend & Infrastructure",
+    blurb: "Serving it, streaming it, and getting it deployed without drama.",
     accent: "iris",
     skills: [
-      { name: "Kubernetes", level: 4 },
-      { name: "Docker", level: 5 },
-      { name: "Terraform", level: 4 },
-      { name: "AWS", level: 4 },
-      { name: "GPU scheduling", level: 4, note: "Ray" },
-      { name: "Prometheus / Grafana", level: 4 },
-      { name: "OpenTelemetry", level: 4 },
-      { name: "CI/CD", level: 5 },
+      { name: "FastAPI", level: 5 },
+      { name: "REST APIs", level: 5 },
+      { name: "Azure", level: 4, note: "App Service, ACR" },
+      { name: "Docker", level: 4 },
+      { name: "Azure Pipelines", level: 4, note: "CI/CD" },
+      { name: "WebSocket / SSE", level: 4 },
+      { name: "Node.js / Express", level: 4 },
+      { name: "OpenTelemetry", level: 3 },
     ],
   },
   {
-    name: "Languages & Tools",
-    blurb: "The daily drivers.",
+    name: "Languages & Frontend",
+    blurb: "The daily drivers, and enough front-end to ship the whole feature.",
     accent: "ember",
     skills: [
       { name: "Python", level: 5, note: "primary" },
-      { name: "TypeScript", level: 4 },
       { name: "SQL", level: 5 },
-      { name: "Go", level: 3 },
-      { name: "Rust", level: 2 },
-      { name: "Postgres / pgvector", level: 5 },
-      { name: "Next.js", level: 4 },
-      { name: "Git", level: 5 },
+      { name: "TypeScript / JavaScript", level: 4 },
+      { name: "React 19", level: 4 },
+      { name: "@xyflow/react", level: 4, note: "node canvas" },
+      { name: "Zustand", level: 3 },
+      { name: "Java", level: 3 },
+      { name: "Linux", level: 4, note: "CLA certified" },
     ],
   },
 ];
 
-/* Currently-learning strip under the grid. TODO: update or delete. */
+/* Currently learning — update freely, this is meant to move. */
 export const currentlyLearning = [
-  "CUDA kernel authoring",
-  "Speculative decoding",
-  "Mechanistic interpretability",
+  "Agent evaluation harnesses",
+  "Distributed tracing for LLM calls",
+  "LangGraph deep research patterns",
 ];

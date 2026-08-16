@@ -97,7 +97,7 @@ export default function Navbar() {
           {/* --- Mark ---------------------------------------------------- */}
           <Link href="/" className="group flex items-center gap-3" onClick={() => setMenuOpen(false)}>
             <span className="relative grid size-8 shrink-0 place-items-center rounded-md border border-ember/30 bg-ember/10 font-mono text-[0.7rem] font-semibold text-ember">
-              {/* TODO: replace with your initials (or swap for a logo/SVG) */}
+              {/* Initials mark — swap for a logo/SVG if you prefer */}
               {site.shortName}
               <span className="absolute inset-0 rounded-md border border-ember/40 opacity-0 animate-pulse-ring group-hover:opacity-100" />
             </span>

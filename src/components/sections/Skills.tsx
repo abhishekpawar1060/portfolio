@@ -40,7 +40,7 @@ function LevelMeter({ level, accent }: { level: number; accent: Accent }) {
  * Skills grouped by category rather than dumped as a tag cloud, with an honest
  * depth indicator per item.
  *
- * TODO: categories, skills and levels all live in src/data/skills.ts.
+ * Categories, skills and levels all live in src/data/skills.ts.
  */
 export default function Skills() {
   return (
@@ -103,7 +103,7 @@ export default function Skills() {
           })}
         </Reveal>
 
-        {/* Currently learning — TODO: update in data/skills.ts */}
+        {/* Currently learning — data/skills.ts */}
         <Reveal className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border/60 bg-card/50 px-5 py-4">
           <span className="label text-muted-foreground">Currently learning</span>
           <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">

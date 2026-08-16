@@ -1,15 +1,14 @@
 import { Mail } from "lucide-react";
 
 import { site } from "@/data/site";
-import { GitHubIcon, LinkedInIcon, XIcon, ScholarIcon } from "@/components/ui/icons";
+import { GitHubIcon, LinkedInIcon, LeetCodeIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
-/* TODO: remove any entry you don't want shown — the URLs live in data/site.ts */
+/* Remove any entry you don't want shown — the URLs live in data/site.ts */
 const links = [
   { label: "GitHub", href: site.socials.github, Icon: GitHubIcon },
   { label: "LinkedIn", href: site.socials.linkedin, Icon: LinkedInIcon },
-  { label: "X", href: site.socials.x, Icon: XIcon },
-  { label: "Google Scholar", href: site.socials.scholar, Icon: ScholarIcon },
+  { label: "LeetCode", href: site.socials.leetcode, Icon: LeetCodeIcon },
   { label: "Email", href: `mailto:${site.email}`, Icon: Mail },
 ];
 

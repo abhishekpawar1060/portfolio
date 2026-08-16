@@ -134,6 +134,13 @@ export interface ExperienceItem {
   current?: boolean;
 }
 
+export interface Certification {
+  name: string;
+  issuer: string;
+  /** Path to the certificate file in /public, e.g. "/certificate/foo.pdf". */
+  href: string;
+}
+
 export interface Post {
   slug: string;
   title: string;

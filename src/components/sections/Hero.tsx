@@ -45,7 +45,7 @@ export default function Hero() {
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
           {/* ------------------------------------------------ Left: headline */}
           <div className="lg:col-span-8">
-            {/* Availability pill — TODO: edit or remove in data/site.ts */}
+            {/* Availability pill — edit or remove in data/site.ts */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            {/* Positioning statement — TODO: rewrite in data/site.ts */}
+            {/* Positioning statement — data/site.ts */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function Hero() {
 
               <Magnetic strength={0.22}>
                 <a
-                  /* TODO: drop your PDF at public/resume.pdf (path in data/site.ts) */
+                  /* Résumé path is set in data/site.ts */
                   href={site.resume}
                   target="_blank"
                   rel="noreferrer noopener"
@@ -160,7 +160,7 @@ export default function Hero() {
               <span className="font-mono text-xs">{site.location}</span>
             </div>
 
-            {/* Stat strip — TODO: real numbers in data/site.ts */}
+            {/* Stat strip — data/site.ts */}
             <dl className="panel-grid w-full grid-cols-3 rounded-xl lg:max-w-xs lg:grid-cols-1">
               {heroStats.map((stat) => (
                 <div

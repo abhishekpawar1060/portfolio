@@ -19,18 +19,11 @@ export function LinkedInIcon({ className }: IconProps) {
   );
 }
 
-export function XIcon({ className }: IconProps) {
+export function LeetCodeIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
-      <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.67l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23Zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64Z" />
-    </svg>
-  );
-}
-
-export function ScholarIcon({ className }: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
-      <path d="M12 2 0 8.5l12 6.5 9.82-5.32V17H24V8.5L12 2ZM4.36 13.09v4.36L12 21.64l7.64-4.19v-4.36L12 17.27l-7.64-4.18Z" />
+      <path d="M13.48 0a1.37 1.37 0 0 0-.98.42L7.2 5.82 2.62 10.5a5.6 5.6 0 0 0 0 7.88l4.6 4.6a5.6 5.6 0 0 0 7.9 0l2.68-2.72a1.37 1.37 0 0 0-1.95-1.92l-2.68 2.72a2.87 2.87 0 0 1-4.04 0l-4.6-4.6a2.87 2.87 0 0 1 0-4.03l4.6-4.7 5.3-5.4A1.37 1.37 0 0 0 13.48 0Z" />
+      <path d="M20.4 11.6H10.1a1.37 1.37 0 1 0 0 2.74h10.3a1.37 1.37 0 0 0 0-2.74Z" />
     </svg>
   );
 }
