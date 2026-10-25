@@ -47,6 +47,6 @@ export const site = {
  *  you've actually shipped — keep it that way. */
 export const heroStats = [
   { value: "6", label: "Agent topologies shipped" },
-  { value: "29+", label: "MCP tools self-hosted" },
+  { value: "MCP", label: "Integration hub delivered" },
   { value: "3", label: "LLM providers integrated" },
 ] as const;

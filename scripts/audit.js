@@ -27,7 +27,7 @@ const { chromium } = require("playwright-core");
 const BASE = process.env.SHOT_URL || "http://localhost:3000";
 const CHANNEL = process.env.CHANNEL || "chrome";
 
-const ROUTES = ["/", "/projects", "/projects/atlas-retrieval"];
+const ROUTES = ["/", "/projects", "/projects/mcp-integration-hub"];
 const MOTION_MODES = ["no-preference", "reduce"];
 const THEMES = ["dark", "light"];
 

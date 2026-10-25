@@ -9,7 +9,7 @@ import { site } from "@/data/site";
 
 const bio = [
   "I build multi-agent LLM systems for clinical trial data — a domain where a confidently wrong answer isn't a bad demo, it's a regulatory problem. Most of my work sits in the gap between a model that produces plausible text and a system you can actually let near a validated dataset.",
-  "Day to day that means agent orchestration on Google's ADK, self-hosted MCP servers exposing database and clinical-API tools, and the guardrail layers underneath: static SQL validation, read-only allow-lists, per-tenant access policy, a safety classifier on every generation. The interesting problems are rarely the prompts — they're the retries, the idempotency, and deciding what a system should refuse to do.",
+  "Day to day, I work on multi-agent systems, MCP integrations for data and information tools, and the access and safety controls around them.",
   "I finished my B.Tech in Computer Science in 2025 and have been shipping production LLM systems since before I graduated. I'm still early enough in this to be genuinely curious about how other people solve these problems, and far enough in to know which parts break.",
 ];
 

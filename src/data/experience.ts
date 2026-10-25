@@ -9,14 +9,12 @@ export const experience: ExperienceItem[] = [
     location: "Pune, Maharashtra",
     current: true,
     points: [
-      "Architected six multi-agent orchestration topologies — graph, coordinator-delegate, hierarchical, iterative-refinement, sequential and parallel — on Google's Agent Development Kit, compiling user-authored configurations stored in MongoDB into live agent execution trees at request time.",
-      "Built the no-code platform on top of it: a drag-and-drop canvas where non-technical users design agent workflows and configure each agent's model, tools and instructions through the UI, removing the need to hand-write agent code per workflow.",
-      "Self-hosted Model Context Protocol servers and clients exposing 29+ tools across PostgreSQL, Neo4j, MongoDB and Weaviate, plus six external clinical, regulatory and financial APIs, with a global retry plugin that recovers failed tool calls up to twice without terminating the run.",
-      "Engineered a natural-language-to-SQL query and dashboard system behind a defense-in-depth guardrail layer — sqlglot static validation, read-only allow-list parsing and per-tenant access policy — covered by 14 dedicated security tests for SQL injection and destructive statements.",
-      "Gated every generation through a safety classifier (IBM Watsonx Granite Guardian) across three LLM providers, and routed models per task on cost tiers at 15+ configuration points: cheap models for high-volume classification, stronger ones for synthesis and planning.",
-      "Orchestrated the event-driven data layer — an idempotent Kafka consumer/producer pipeline for cross-service entity sync, and Airflow ETL converting raw EDC data into SDTM-compliant PostgreSQL datasets with automatic rollback on failure.",
+      "Led a centralized Model Context Protocol hub, bringing independently maintained tool servers into a consistent integration layer for AI workflows.",
+      "Designed agent orchestration and a no-code workflow builder so users can compose multi-step AI workflows through a visual interface.",
+      "Built a natural-language data-query experience with read-only access controls and validation checks to limit unsafe or invalid queries.",
+      "Contributed to safety checks, model selection, and event-driven data processing across the AI platform.",
     ],
-    stack: ["React", "Python", "Google ADK", "MCP", "FastAPI", "MongoDB", "PostgreSQL", "Kafka", "Airflow", "Azure", "Vertex AI"]
+    stack: ["React", "Python", "Google ADK", "MCP", "FastAPI", "MongoDB", "PostgreSQL", "Kafka", "Airflow", "Azure", "Vertex AI", "FastMCP", "Docker", "Azure Container Apps", "MLflow"]
   },
   {
     role: "AI Intern",

@@ -23,15 +23,14 @@ export const alt = `${site.name} — ${site.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/** Read a local asset and inline it, since satori can't fetch from disk. */
-function dataUri(relativePath: string, mime: string) {
-  const bytes = readFileSync(join(process.cwd(), relativePath));
+/** Inline a fixed local asset, since satori can't fetch from disk. */
+function dataUri(bytes: Buffer, mime: string) {
   return `data:${mime};base64,${bytes.toString("base64")}`;
 }
 
 export default async function OpengraphImage() {
-  const background = dataUri("src/app/og-background.png", "image/png");
-  const portrait = dataUri("public/portrait.png", "image/png");
+  const background = dataUri(readFileSync(join(process.cwd(), "src/app/og-background.png")), "image/png");
+  const portrait = dataUri(readFileSync(join(process.cwd(), "public/portrait.png")), "image/png");
 
   return new ImageResponse(
     (

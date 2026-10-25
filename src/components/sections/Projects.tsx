@@ -27,11 +27,11 @@ export default function Projects() {
           kicker="Selected work"
           title={
             <>
-              Four systems, and what it actually took{" "}
-              <span className="text-muted-foreground">to make them hold.</span>
+              Systems I led and built{" "}
+              <span className="text-muted-foreground">and what it took to ship them.</span>
             </>
           }
-          description="Each one is a full case study — the problem, the architecture, the decisions I'd defend, and the numbers that came out the other side."
+          description="Selected case studies on the problems, architecture, and engineering decisions behind the work."
         />
 
         <Reveal stagger={0.12} className="mt-14 grid gap-5 lg:grid-cols-3" amount={0.05}>
