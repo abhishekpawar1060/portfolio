@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Footer">
+          <nav aria-label="Footer navigation">
             <ul className="grid grid-cols-2 gap-x-10 gap-y-2 sm:grid-cols-1">
               {navLinks.map((link) => (
                 <li key={link.id}>
@@ -28,7 +28,9 @@ export default function Footer() {
                     href={link.href}
                     className="group flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-ember"
                   >
-                    <span className="font-mono text-[0.65rem] opacity-50">{link.index}</span>
+                    <span aria-hidden="true" className="font-mono text-[0.65rem] opacity-50">
+                      {link.index} /
+                    </span>
                     {link.label}
                   </Link>
                 </li>

@@ -90,7 +90,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-svh bg-background text-foreground">
+      <body id="top" className="min-h-svh bg-background text-foreground">
         <ThemeProvider>
           <a
             href="#main"

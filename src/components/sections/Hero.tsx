@@ -35,7 +35,6 @@ export default function Hero() {
 
   return (
     <section
-      id="top"
       className="relative flex min-h-[100svh] items-center overflow-hidden pb-20 pt-32 sm:pt-36"
     >
       <Backdrop variant="hero" />
