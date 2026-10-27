@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 // useReducedMotion is used ONLY inside an effect here (to pause the rotating
 // headline). Never use it to change rendered output — see ThemeProvider.
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -86,7 +86,6 @@ export default function Hero() {
                 ))}
               </span>
 
-              {/* Rotating phrase */}
               <span aria-hidden className="relative mt-1 block h-[1.05em] overflow-hidden">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
